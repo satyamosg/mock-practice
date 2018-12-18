@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
   ],
   imports: [
     BrowserModule,

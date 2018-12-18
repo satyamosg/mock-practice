@@ -1,26 +1,8 @@
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Welcome {{ title }}!
   </h1>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li *ngFor="let session of sessions | async">
-    <p>
-      Topic: {{ session.topic }}
-    </p>
-    <p>
-      Date: {{ session.date }}
-    </p>
-    <p>
-      Content: {{ session.content }}
-    </p>
-    <p>
-      Reflections: {{ session.reflections }}
-    </p>
-    <p>
-      Ratings: {{ session.rating }}
-    </p>
-  </li>
-</ul>
 <app-create-session></app-create-session>
+<app-session-list></app-session-list>
+<button class="btn btn-danger">Log out</button>

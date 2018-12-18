@@ -1,3 +1,21 @@
-<p>
-  session-list works!
-</p>
+<h2>Here are some links to help you start: </h2>
+<ul *ngFor="let session of sessions | async">
+  <li>
+    <p>
+      Topic: {{ session.topic }}
+    </p>
+    <p>
+      Date: {{ session.date }}
+    </p>
+    <p>
+      Content: {{ session.content }}
+    </p>
+    <p>
+      Reflections: {{ session.reflections }}
+    </p>
+    <p>
+      Ratings: {{ session.rating }}
+    </p>
+  </li>
+  <button class="btn btn-danger" id="remove-session" (click)="onDelete()"><i class="fas fa-times"></i></button>
+</ul>

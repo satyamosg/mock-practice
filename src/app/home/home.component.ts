@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
+import { ISession } from '../services/sessions.service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,9 @@ import { AngularFirestore } from "@angular/fire/firestore";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title = 'mock-practice';
+  title = 'jeff';
 
-  sessions: Observable<any[]>
-
-  constructor (db: AngularFirestore) {
-    this.sessions = db.collection('sessions').valueChanges();
-  }
+  constructor () { }
 
   ngOnInit() {
   }
