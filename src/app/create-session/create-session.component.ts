@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionsService } from '../services/sessions.service';
 
 @Component({
   selector: 'app-create-session',

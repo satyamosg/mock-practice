@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 // Firebase Modules
 import { AngularFireModule } from '@angular/fire';
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true }
     ),
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule

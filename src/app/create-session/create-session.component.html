@@ -1,3 +1,66 @@
-<p>
-  create-session works!
-</p>
+<h3>New Session:</h3>
+<div class="createsession">
+  <div class="">
+    <form class="session-entry" #sessionForm="ngForm" (ngSubmit)="onSubmit(sessionForm.value)">
+      <div class="form-group">
+        <label for="newSession">Session Topic:</label>
+        <input
+          [(ngModel)]="topic"
+          name="new-session" 
+          class="form-control" 
+          id="newSession"
+          type="text"
+          placeholder="Enter Session"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="sessionDate">Session Date:</label>
+        <input
+          [(ngModel)]="date"
+          name="session-date" 
+          class="form-control" 
+          id="sessionDate"
+          type="date"
+          placeholder="Enter Date"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="newSession">Session Content:</label>
+        <input
+          [(ngModel)]="content"
+          name="new-session" 
+          class="form-control" 
+          id="newSession"
+          type="text"
+          placeholder="Enter Session"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="reflections">Reflections:</label>
+        <textarea  
+          [(ngModel)]="reflections"
+          name="reflections" 
+          class="form-control" 
+          id="reflections"
+          type="text"
+          placeholder="Enter Reflections"
+          required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input 
+          [(ngModel)]="rating"  
+          name="rating" 
+          class="form-control" 
+          id="rating"
+          type="number"
+          min="0"
+          max="10"
+          placeholder="Enter Rating"
+          required>
+      </div>
+      <button type="submit" class="btn btn-info">Add Session</button>
+      <p>{{sessionForm.name | json}}</p>
+    </form>
+  </div>
+</div>
