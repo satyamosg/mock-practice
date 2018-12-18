@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface ISession {
   topic: string;
@@ -8,6 +9,10 @@ export interface ISession {
   content: string;
   reflections: string;
   rating: number;
+}
+
+export interface ISessionID extends ISession {
+  id: string;
 }
 
 @Injectable({
@@ -18,10 +23,22 @@ export class SessionsService {
 
   sessions: Observable<ISession[]>;
   sessionCollection: AngularFirestoreCollection<ISession>;
+  user;
 
-  constructor(db: AngularFirestore) {
-    this.sessionCollection = db.collection<ISession>('sessions');
+  constructor(private db: AngularFirestore ) {
+    this.sessionCollection = this.db.collection<ISession>('sessions');
+  
+    this.sessions = this.sessionCollection.snapshotChanges()
+    .pipe(map(this.includeCollectionID));
   }
+
+  includeCollectionID(docChangeAction) {
+    return docChangeAction.map((a) => {
+      const data = a.payload.doc.data();
+      const id = a.payload.doc.id;
+      return {id, ...data };
+    })
+  };
 
   addSession (sessionticles ) {
     const session: ISession = {
@@ -29,13 +46,13 @@ export class SessionsService {
       date: sessionticles.sessionDate,
       content: sessionticles.sessionContent,
       reflections: sessionticles.reflections,
-      rating: sessionticles.rating
+      rating: sessionticles.rating,
     };
     
     this.sessionCollection.add(session);
   }
 
-  deleteSession(sessionticles: ISession) {
-    this.sessionCollection.remove(session);
+  deleteSession(sessionticles: ISessionID) {
+    this.sessionCollection.doc(sessionticles.id).delete();
   }
 }
